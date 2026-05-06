@@ -77,113 +77,16 @@ tx_HOM𝑖 = 𝑏0 + 𝑏1. pib_pc + 𝑏2. qtde_favela + 𝑏3. tx_analfab + �
 
 Dos resultados obtidos desta modelagem, crie uma tabela com dados de qualidade da regressão, em um modelo típico de um artigo científico ou relatório de decisão baseada em evidência:
 
-Variavel
-Coeficiente
-Erro Padrao
-Coef. Padronizados
-Estatística t
-p-valor
-(sig.)
-IC95 Min
-IC95 Max
-Intercepto (constante)
+| Variavel | Coeficiente | Erro Padrao | Coef. Padronizados | Estatística t | p-valor(sig.) | IC95 Min | IC95 Max |
+|  :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: |
+| Intercepto (constante) |  |  |  |  |  |  |  |
+| indep_1 |  |  |  |  |  |  |  |
+| indep_2 |  |  |  |  |  |  |  |
+| indep_3 |  |  |  |  |  |  |  |
+| indep_4|  |  |  |  |  |  |  |
+| indep_5 |  |  |  |  |  |  |  |
+| n=  | R2 =  | R2 ajustado = | Estat. F = | p global = | AIC = | BIC = | Erro padrao residual |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_5
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n=  
-R2 = 
-R2 ajustado =
-Estat. F =
-p global =
-AIC =
-BIC =
-Erro padrao residual
 
 
 Análise do modelo:
