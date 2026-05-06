@@ -80,10 +80,12 @@ list.files() #Lista arquivos na pasta para conferência
 #VARIÁVEL: analfabetismo_por_municipio
 #---------------------------
 
-#e)
+#e)Percentual da população jovem (entre 15 e 29 anos)nos municípios
+#VARIÁVEL: populacao_jovem
 #---------------------------
 
-#f)
+#f)Familiasa beneficiadas pelo Bolsa Familia em dezembro de 2024
+#VARIÁVEL: bolsa_familia_2024
 #---------------------------
 #=========================================================================
 # 2.3 Construção do Modelo
