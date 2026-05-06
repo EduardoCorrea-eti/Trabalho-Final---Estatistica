@@ -10,8 +10,16 @@ options(scipen = 999, digits = 4)
 graphics.off()
 
 #=======================PACOTES NECESSÁRIOS=====================================
+#instalação caso necessário
+if(!require("sidrar")) install.packages("sidrar")
+if(!require("conflicted")) install.packages("conflicted")
+
+#chamando bibliotecas
 library(readr)
 library(dplyr)
+library(sidrar)
+library(tidyverse)
+library(conflicted)
 
 #===================ESTABELECENDO AS PASTAS DE TRABALHO=========================
 # Exibe o diretório raiz do projeto, caso esteja usando projeto RStudio
@@ -87,6 +95,8 @@ list.files() #Lista arquivos na pasta para conferência
 #f)Familiasa beneficiadas pelo Bolsa Familia em dezembro de 2024
 #VARIÁVEL: bolsa_familia_2024
 #---------------------------
+
+
 #=========================================================================
 # 2.3 Construção do Modelo
 #=========================================================================
