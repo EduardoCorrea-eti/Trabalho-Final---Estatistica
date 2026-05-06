@@ -1,4 +1,4 @@
-#Especialização em Ciência de Dados e Big Data
+#Especialização em Ciência de Dados e Big Data#
 
 **TRABALHO FINAL: ESTATÍSTICA - 2026**
 
