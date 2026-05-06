@@ -19,9 +19,9 @@ A análise de dados e a identificaçã  o de correlações entre variáveis pode
 - Justificativa:
   - Compreender as dinâmicas que influenciam a qualidade em modelos estatísticos de regressão linear múltipla.
 
-2. Aspectos gerais
+### 2. Aspectos gerais
 
-  2.1. Estrutura do trabalho
+  #### 2.1. Estrutura do trabalho
     - Divisão da turma
 Divisão da turma em 15 grupos de 7 a 10 alunos (por afinidade):
 https://docs.google.com/spreadsheets/d/1zO1znMXrlO2hgoa7vF8v3waTV6GZbmnAHoEzE6pck9E/ 
@@ -35,7 +35,7 @@ Dentre os propósitos da pesquisa, a intenção é investigar as eventuais rela�
     - Granularidade da análise:
       - O nível de análise será os municípios do estado sorteado
 
-Coleta de dados:
+  #### 2.2. Coleta de dados:
 Utilização de fontes públicas, preferencialmente oficiais.
 construa um data frame filtrado para o estado selecionado, lendo no R os dados do .csv com os dados de criminalidade previamente extraídos do SINESP VDE, da população pelo Censo 2022 conforme IBGE e uma taxa média anual calculada para 100 mil habitantes:
 https://drive.google.com/file/d/12_MRBwS1QP26HpwuVAJr4cb-gylc0m5d/view?usp=drive_link 
@@ -63,7 +63,7 @@ Crie uma coluna calculada com a taxa de recebimento do PBF para cada 100 mil hab
 
 
 
-Construção do modelo:
+  #### 2.3. Construção do modelo:
 Insira todas as variáveis em um data frame novo no R Studio
 Realize a estatística descritiva de cada uma dessas variáveis, incluindo o resumo dos 5 números, a média e o desvio-padrão e o coeficiente de variação.
 (i) atestar que os dados numéricos estejam formatados como número; 
@@ -94,7 +94,7 @@ Dos resultados obtidos desta modelagem, crie uma tabela com dados de qualidade d
 
 
 
-Análise do modelo:
+  #### 2.4. Análise do modelo:
 A partir das significâncias estatísticas (resultados dos testes de hipóteses) dos parâmetros do modelo ajustado (R2, b0, b1, b2, b3, b4 e b5), responda: 
 (i) quais foram significativos a 1%? 
 (ii) quais foram significativos a 5%? 
@@ -108,7 +108,7 @@ Interprete os intervalos de confiança obtidos para os parâmetros β0 … β5, 
 Avalie os resultados do teste de Inflação da Variância (VIF) do modelo.
 Qual é a Taxa Média de Homicídios esperada (ou seja, a taxa mais provável) para um município que eventualmente apresente as seguintes características: (i) PIB per capita de 2 mil reais, (ii) taxa de analfabetismo de 10%, (iii) que possua “favelas e comunidades urbanas” e (iv) com percentual de jovens de 20%?
 
-Ajuste do modelo:
+ #### 2.5. Ajuste do modelo:
 Ajuste o modelo de regressão sugerido anteriormente, porém transformando as variáveis quantitativas (variável dependente e as variáveis explicativas contínuas), de modo que elas fiquem expressas em termos do seu logaritmo natural (ln). 
 
 Utilize a técnica de ajuste do logaritmo para variáveis com valor zero. 
@@ -130,7 +130,7 @@ Dos resultados obtidos desta nova modelagem, crie uma segunda tabela com valores
 
 A transformação das variáveis melhorou ou piorou os resultados do modelo de regressão? Justifique.
 
-Simplificando o modelo:
+  #### 2.6. Simplificando o modelo:
 
 Escolha uma das variáveis independentes e a retire do modelo. Justifique sua escolha.
 Dos resultados obtidos desta terceira modelagem, crie uma nova tabela com valores de qualidade da regressão, conforme o modelo típico de um artigo ou relatório baseado em evidências:
@@ -152,7 +152,7 @@ Com base na comparação dos resultados das três tabelas geradas até aqui, qua
 
 
 
-Customizando o modelo:
+  #### 2.7. Customizando o modelo:
 Suponha que você pensou inicialmente em simplificar o modelo, usando a variável IDH-M em substituição ao PIB per capita e à taxa de analfabetismo. Porém, diante do atraso de dados na sua atualização (atualmente só existe IDH Municipal com dados do Censo de 2010), você decide criar uma variável proxy que tente projetar um índice com os componentes clássicos do IDH (renda, educação e nível de saneamento).
 aproveite os dados já baixados de renda (PIB) e educação (analfabetismo) e some a ele uma extração relativa ao percentual de domicílios do município que possuem lixo coletado por serviço de limpeza (72120) na tabela SIDRAR 9541:
 https://sidra.ibge.gov.br/tabela/9541  
@@ -183,7 +183,7 @@ Dos resultados obtidos desta quarta modelagem, crie mais uma tabela com valores 
 
 Com base na comparação dos resultados das quatro tabelas, qual dos modelos de regressão você escolheria para apresentar como embasamento de seu projeto de intervenção? Justifique.
 
-Prazo de entrega
+## 3. Prazo de entrega
 Os grupos terão até o dia 31 de maio para entregar o trabalho.
 Não é necessário encaminhar arquivos via email. 
 A entrega deverá ser procedida através do envio via MOODLE online:
