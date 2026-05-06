@@ -3,19 +3,23 @@
 **TRABALHO FINAL: ESTATÍSTICA - 2026**
 
 Avaliação final em grupo
+
 Análise da Associação entre Variáveis socioeconômicas dentre os municípios de uma unidade da federação 
+
 Este trabalho é requisito para a disciplina de Estatística e Probabilidade 2026
+
 Introdução
+
 A análise de dados e a identificaçã  o de correlações entre variáveis podem fornecer insights valiosos para a formulação de políticas públicas e estratégias de atuação.
 
-Objetivo:
-Realizar uma análise estatística descritiva e inferencial através de regressão linear múltipla.
-Identificar possíveis relações entre indicadores e fatores sociais, econômicos e institucionais.
-Construir um script stand alone em R de maneira que possa ser executado com download de todas as fontes de dados
-Justificativa:
-Compreender as dinâmicas que influenciam a qualidade em modelos estatísticos de regressão linear múltipla.
+- Objetivo:
+  - Realizar uma análise estatística descritiva e inferencial através de regressão linear múltipla.
+  - Identificar possíveis relações entre indicadores e fatores sociais, econômicos e institucionais.
+  - Construir um script stand alone em R de maneira que possa ser executado com download de todas as fontes de dados
+- Justificativa:
+  - Compreender as dinâmicas que influenciam a qualidade em modelos estatísticos de regressão linear múltipla.
 
-    Aspectos gerais
+Aspectos gerais
 Estrutura do trabalho
 Divisão da turma
 Divisão da turma em 15 grupos de 7 a 10 alunos (por afinidade):
