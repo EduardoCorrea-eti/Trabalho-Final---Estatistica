@@ -112,115 +112,15 @@ Em relação à variável discreta quantidade de favelas, transforme-a em uma va
 
 tx_HOM𝑖 = 𝑏0 + 𝑏1. ln(pib_pc) + 𝑏2. ln(tx_analfab) + 𝑏3. ln(perc_jovem) + 𝑏4. ln(tx_bolsa) + 𝑏5.tem_favela + 𝑢𝑖	(Modelo específico)
 Dos resultados obtidos desta nova modelagem, crie uma segunda tabela com valores de qualidade da regressão, conforme o modelo fornecido em sala de aula .
-
-Variavel
-Coeficiente
-Erro Padrao
-Coef. Padronizados
-Estatística t
-p-valor
-(sig.)
-IC95 Min
-IC95 Max
-Intercepto (constante)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_5
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n=  
-R2 = 
-R2 ajustado =
-Estat. F =
-p global =
-AIC =
-BIC =
-Erro padrao residual
-
+| Variavel | Coeficiente | Erro Padrao | Coef. Padronizados | Estatística t | p-valor(sig.) | IC95 Min | IC95 Max |
+|  :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: |
+| Intercepto (constante) |  |  |  |  |  |  |  |
+| indep_1 |  |  |  |  |  |  |  |
+| indep_2 |  |  |  |  |  |  |  |
+| indep_3 |  |  |  |  |  |  |  |
+| indep_4|  |  |  |  |  |  |  |
+| indep_5 |  |  |  |  |  |  |  |
+| n=  | R2 =  | R2 ajustado = | Estat. F = | p global = | AIC = | BIC = | Erro padrao residual |
 
 
 A transformação das variáveis melhorou ou piorou os resultados do modelo de regressão? Justifique.
@@ -230,99 +130,14 @@ Simplificando o modelo:
 Escolha uma das variáveis independentes e a retire do modelo. Justifique sua escolha.
 Dos resultados obtidos desta terceira modelagem, crie uma nova tabela com valores de qualidade da regressão, conforme o modelo típico de um artigo ou relatório baseado em evidências:
 
-
-Variavel
-Coeficiente
-Erro Padrao
-Coef. Padronizados
-Estatística t
-p-valor
-(sig.)
-IC95 Min
-IC95 Max
-Intercepto (constante)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n=  
-R2 = 
-R2 ajustado =
-Estat. F =
-p global =
-AIC =
-BIC =
-Erro padrao residual
+| Variavel | Coeficiente | Erro Padrao | Coef. Padronizados | Estatística t | p-valor(sig.) | IC95 Min | IC95 Max |
+|  :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: |
+| Intercepto (constante) |  |  |  |  |  |  |  |
+| indep_1 |  |  |  |  |  |  |  |
+| indep_2 |  |  |  |  |  |  |  |
+| indep_3 |  |  |  |  |  |  |  |
+| indep_4|  |  |  |  |  |  |  |
+| n=  | R2 =  | R2 ajustado = | Estat. F = | p global = | AIC = | BIC = | Erro padrao residual |
 
 
 Com base na comparação dos resultados das três tabelas geradas até aqui, qual dos modelos de regressão você escolheria para apresentar como embasamento de seu projeto de intervenção? Justifique.
@@ -352,98 +167,14 @@ Atualize seu modelo regressivo, incluindo indice_proxy e removendo pib_pc e anal
 tx_HOM𝑖 = 𝑏0 + 𝑏1. indice_proxy + 𝑏2. favela+ 𝑏3. perc_jovem + 𝑏4. tx_bolsa_fam + 𝑢𝑖
 (Modelo específico)
 Dos resultados obtidos desta quarta modelagem, crie mais uma tabela com valores de qualidade da regressão, conforme o modelo fornecido em sala de aula .
-Variavel
-Coeficiente
-Erro Padrao
-Coef. Padronizados
-Estatística t
-p-valor
-(sig.)
-IC95 Min
-IC95 Max
-Intercepto (constante)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-indep_4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n=  
-R2 = 
-R2 ajustado =
-Estat. F =
-p global =
-AIC =
-BIC =
-Erro padrao residual
+| Variavel | Coeficiente | Erro Padrao | Coef. Padronizados | Estatística t | p-valor(sig.) | IC95 Min | IC95 Max |
+|  :--- | :---: | :---: | :---: | :---: | :---: | :---: | ---: |
+| Intercepto (constante) |  |  |  |  |  |  |  |
+| indep_1 |  |  |  |  |  |  |  |
+| indep_2 |  |  |  |  |  |  |  |
+| indep_3 |  |  |  |  |  |  |  |
+| indep_4|  |  |  |  |  |  |  |
+| n=  | R2 =  | R2 ajustado = | Estat. F = | p global = | AIC = | BIC = | Erro padrao residual |
 
 Com base na comparação dos resultados das quatro tabelas, qual dos modelos de regressão você escolheria para apresentar como embasamento de seu projeto de intervenção? Justifique.
 
