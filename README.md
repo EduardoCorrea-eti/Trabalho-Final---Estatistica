@@ -6,7 +6,7 @@ Avaliação final em grupo
 Análise da Associação entre Variáveis socioeconômicas dentre os municípios de uma unidade da federação
 Este trabalho é requisito para a disciplina de Estatística e Probabilidade 2026
 Introdução
-A análise de dados e a identificação de correlações entre variáveis podem fornecer insights valiosos para a formulação de políticas públicas e estratégias de atuação.
+A análise de dados e a identificaçã  o de correlações entre variáveis podem fornecer insights valiosos para a formulação de políticas públicas e estratégias de atuação.
 
 Objetivo:
 Realizar uma análise estatística descritiva e inferencial através de regressão linear múltipla.
