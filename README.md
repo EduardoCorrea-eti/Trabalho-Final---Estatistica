@@ -1,6 +1,6 @@
-# Especialização em Ciência de Dados e Big Data #
+# Especialização em Ciência de Dados e Big Data 
 
-**TRABALHO FINAL: ESTATÍSTICA - 2026**
+** TRABALHO FINAL: ESTATÍSTICA - 2026
 
 Avaliação final em grupo
 
@@ -8,7 +8,7 @@ Análise da Associação entre Variáveis socioeconômicas dentre os municípios
 
 Este trabalho é requisito para a disciplina de Estatística e Probabilidade 2026
 
-Introdução
+1. Introdução
 
 A análise de dados e a identificaçã  o de correlações entre variáveis podem fornecer insights valiosos para a formulação de políticas públicas e estratégias de atuação.
 
@@ -19,20 +19,21 @@ A análise de dados e a identificaçã  o de correlações entre variáveis pode
 - Justificativa:
   - Compreender as dinâmicas que influenciam a qualidade em modelos estatísticos de regressão linear múltipla.
 
-Aspectos gerais
-Estrutura do trabalho
-Divisão da turma
+2. Aspectos gerais
+
+  2.1. Estrutura do trabalho
+    - Divisão da turma
 Divisão da turma em 15 grupos de 7 a 10 alunos (por afinidade):
 https://docs.google.com/spreadsheets/d/1zO1znMXrlO2hgoa7vF8v3waTV6GZbmnAHoEzE6pck9E/ 
 
-Contexto
+    - Contexto
 Suponha que o grupo esteja realizando pesquisa que envolve aspectos do perfil socioeconômico dos municípios do estado de ___________________________. 
 (cada grupo terá sorteado uma unidade da federação)
 
 Dentre os propósitos da pesquisa, a intenção é investigar as eventuais relações entre um indicador com a taxa média de homicídios (consumados e tentados) e alguns outros fatores como o desempenho econômico municipal (medido pelo PIB per capita), sua taxa de analfabetismo e o percentual de sua jovem entre outros.
 
-Granularidade da análise:
-O nível de análise será os municípios do estado sorteado
+    - Granularidade da análise:
+      - O nível de análise será os municípios do estado sorteado
 
 Coleta de dados:
 Utilização de fontes públicas, preferencialmente oficiais.
