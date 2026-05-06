@@ -24,7 +24,7 @@ A análise de dados e a identificaçã  o de correlações entre variáveis pode
   #### 2.1. Estrutura do trabalho
     - Divisão da turma
 Divisão da turma em 15 grupos de 7 a 10 alunos (por afinidade):
-https://docs.google.com/spreadsheets/d/1zO1znMXrlO2hgoa7vF8v3waTV6GZbmnAHoEzE6pck9E/ 
+<--https://docs.google.com/spreadsheets/d/1zO1znMXrlO2hgoa7vF8v3waTV6GZbmnAHoEzE6pck9E/-->
 
     - Contexto
 Suponha que o grupo esteja realizando pesquisa que envolve aspectos do perfil socioeconômico dos municípios do estado de ___________________________. 
