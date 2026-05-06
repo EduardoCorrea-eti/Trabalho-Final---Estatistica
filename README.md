@@ -1,6 +1,6 @@
-Especialização em Ciência de Dados e Big Data
+#Especialização em Ciência de Dados e Big Data
 
-TRABALHO FINAL: ESTATÍSTICA - 2026
+**TRABALHO FINAL: ESTATÍSTICA - 2026**
 
 Avaliação final em grupo
 Análise da Associação entre Variáveis socioeconômicas dentre os municípios de uma unidade da federação 
