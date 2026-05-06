@@ -20,6 +20,7 @@ library(dplyr)
 library(sidrar)
 library(tidyverse)
 library(conflicted)
+library(janitor)
 
 #===================ESTABELECENDO AS PASTAS DE TRABALHO=========================
 # Exibe o diretório raiz do projeto, caso esteja usando projeto RStudio
@@ -64,7 +65,7 @@ dados_de_criminalidade <- readr::read_delim(url_csv,
 estado <- "SP" 
 
 df_dados_de_criminalidade <- dados_de_criminalidade %>%
-filter(uf == estado) %>%
+dplyr::filter(uf == estado) %>%
 # Garantir que o código seja tratado como texto para evitar perda de zeros à esquerda
 mutate(cod_municipio = as.character(cod_municipio))
 
@@ -78,6 +79,42 @@ list.files() #Lista arquivos na pasta para conferência
 #b)Ulilizar o pacote SIDRAR - Dados do Produto Interno Bruto de 2023 para cada município
 #VARIÁVEL: pib_2023
 #---------------------------
+pib_tot_2023 <- get_sidra(api = "/t/5938/n6/35/v/37/p/last%201/d/v37%200")
+pib_sp <- pib_2023 %>%
+  select(Município,`Município (Código)`, Valor) %>%
+  dplyr::filter(str_ends(Município, " - SP")) %>%
+  mutate(Valor = as.numeric(Valor))
+
+head(pib_sp)
+
+head(df_dados_de_criminalidade)
+
+df_pib_sp_limpo <- pib_sp %>% clean_names()
+df_dados_de_criminalidade_limpo = df_dados_de_criminalidade %>% clean_names()
+
+names(df_pib_sp_limpo)
+names(df_dados_de_criminalidade_limpo)
+
+
+df_pib_per_capita <- df_dados_de_criminalidade_limpo %>%
+  left_join(df_pib_sp_limpo, by = c("cod_municipio" = "municipio_codigo")) %>%
+  mutate(
+    valor = as.numeric(valor),
+    populacao_2022 = as.numeric(populacao_2022)
+  )
+
+#head(df_pib_per_capita)
+
+df_pib_per_capita <- df_pib_per_capita %>%
+  mutate(
+    pib_per_capita = (valor * 1000) / populacao_2022) %>%
+  select(municipio.x, pib_total_mil = valor, populacao_2022,pib_per_capita)
+
+head(df_pib_per_capita )
+
+#*Obs: NECESSITA FORMATAR/CONFERIR DADOS FINAIS
+write_csv(df_pib_per_capita, "Pib_per_capita.csv")
+
   
   
 #c) Quantidade de aglomerados urbanos por municipio
