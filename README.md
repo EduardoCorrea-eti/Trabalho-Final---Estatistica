@@ -1,8 +1,14 @@
 ****** CONFIGURAÇÃO DE AMBIENTE ******
 
 Para garantir que o script rode normalmente em todos os sistemas.
-Este projeto utiliza **renv** . Ao clonar o projeto, você deve executar o comando: renf::restore(), no console do Rstudio dentro da pasta do projeto
-desta forma todas as bibliotecas estarão na versão compatível.
+Este projeto utiliza **renv** . 
+
+Ao clonar o projeto, você deve executar o comando: 
+
+    renf::restore()
+
+, no console do Rstudio dentro da pasta do projeto,
+desta forma, todas as bibliotecas estarão na versão compatível.
 
 
 
