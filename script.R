@@ -64,7 +64,7 @@ mutate(cod_municipio = as.character(cod_municipio))
 print(paste("Total de Municípios no estado selecionado:", nrow(df_dados_de_criminalidade)))
 head(df_dados_de_criminalidade)
 
-write_csv(df_dados_de_criminalidade, "dados_de_criminalidade.csv")
+write_csv(df_dados_de_criminalidade, "dados_de_criminalidade.csv") 
 list.files() #Lista arquivos na pasta para conferência
   
 #b)Ulilizar o pacote SIDRAR - Dados do Produto Interno Bruto de 2023 para cada município
