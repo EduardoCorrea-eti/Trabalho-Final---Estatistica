@@ -1,6 +1,6 @@
 # Especialização em Ciência de Dados e Big Data 
 
-** TRABALHO FINAL: ESTATÍSTICA - 2026
+**TRABALHO FINAL: ESTATÍSTICA - 2026**
 
 Avaliação final em grupo
 
@@ -8,7 +8,7 @@ Análise da Associação entre Variáveis socioeconômicas dentre os municípios
 
 Este trabalho é requisito para a disciplina de Estatística e Probabilidade 2026
 
-1. Introdução
+### 1. Introdução
 
 A análise de dados e a identificaçã  o de correlações entre variáveis podem fornecer insights valiosos para a formulação de políticas públicas e estratégias de atuação.
 
