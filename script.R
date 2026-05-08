@@ -100,7 +100,7 @@ df_dados_de_criminalidade_limpo = df_dados_de_criminalidade %>% clean_names()
 #names(df_pib_sp_limpo)
 #names(df_dados_de_criminalidade_limpo)
 
-#interando as tabelas
+#integrando as tabelas
 df_pib_per_capita <- df_dados_de_criminalidade_limpo %>%
   left_join(df_pib_sp_limpo, by = c("cod_municipio" = "municipio_codigo")) %>%
   mutate(
