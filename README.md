@@ -1,16 +1,22 @@
-****** CONFIGURAÇÃO DE AMBIENTE ******
+🚀 Como configurar o ambiente de desenvolvimento
 
-Para garantir que o script rode normalmente em todos os sistemas.
-Este projeto utiliza **renv** . 
+Este projeto utiliza o **renv** para garantir que todos usem as mesmas versões de bibliotecas.
 
-Ao clonar o projeto, você deve executar o comando: 
+Após clonar o repositório, abra o R na pasta raiz do projeto.
 
-    # renv::restore()
+Se você não tem o renv instalado globalmente, rode no console do RStudio: 
 
-, no console do Rstudio dentro da pasta do projeto,
-desta forma, todas as bibliotecas estarão na versão compatível.
+        install.packages("renv").
+
+Execute o comando abaixo console do RStudio para instalar todas as dependências automaticamente:
 
 
+        renv::restore()
+         
+4. Uma vez finalizado, seu ambiente estará idêntico ao de produção.
+
+
+================================================================================================
 
 # Especialização em Ciência de Dados e Big Data 
 
