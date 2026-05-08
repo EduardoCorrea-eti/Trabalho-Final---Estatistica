@@ -6,7 +6,7 @@ Após clonar o repositório, abra o R na pasta raiz do projeto.
 
 Se você não tem o renv instalado globalmente, rode no console do RStudio: 
 
-        install.packages("renv").
+        install.packages("renv")
 
 Execute o comando abaixo console do RStudio para instalar todas as dependências automaticamente:
 
