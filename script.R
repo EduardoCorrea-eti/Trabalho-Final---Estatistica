@@ -78,7 +78,7 @@ write_csv(df_dados_de_criminalidade, "dados_de_criminalidade.csv")
 list.files() #Lista arquivos na pasta para conferência
   
 #b)Ulilizar o pacote SIDRAR - Dados do Produto Interno Bruto de 2023 para cada município
-#VARIÁVEL: pib_2023
+#VARIÁVEL: df_pib_per_capita
 #---------------------------
 #recupera os dados dos municipios de SP no SIDRAR
 pib_tot_2023 <- get_sidra(api = "/t/5938//n6/in%20n3%2035/v/37/p/last%201/d/v37%200")
