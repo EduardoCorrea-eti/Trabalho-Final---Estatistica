@@ -13,6 +13,7 @@ graphics.off()
 #instalação caso necessário
 if(!require("sidrar")) install.packages("sidrar")
 if(!require("conflicted")) install.packages("conflicted")
+if(!require("readr")) install.packages("readr")
 
 #chamando bibliotecas
 library(readr)
@@ -79,8 +80,11 @@ list.files() #Lista arquivos na pasta para conferência
 #b)Ulilizar o pacote SIDRAR - Dados do Produto Interno Bruto de 2023 para cada município
 #VARIÁVEL: pib_2023
 #---------------------------
-pib_tot_2023 <- get_sidra(api = "/t/5938/n6/35/v/37/p/last%201/d/v37%200")
-pib_sp <- pib_2023 %>%
+#recupera os dados dos municipios de SP no SIDRAR
+pib_tot_2023 <- get_sidra(api = "/t/5938//n6/in%20n3%2035/v/37/p/last%201/d/v37%200")
+
+#seleção de colunas
+pib_sp <- pib_tot_2023 %>%
   select(Município,`Município (Código)`, Valor) %>%
   dplyr::filter(str_ends(Município, " - SP")) %>%
   mutate(Valor = as.numeric(Valor))
@@ -92,10 +96,11 @@ head(df_dados_de_criminalidade)
 df_pib_sp_limpo <- pib_sp %>% clean_names()
 df_dados_de_criminalidade_limpo = df_dados_de_criminalidade %>% clean_names()
 
-names(df_pib_sp_limpo)
-names(df_dados_de_criminalidade_limpo)
+#DEBUGANDO NOME DE COLUNAS APOS ALTERAÇÃO
+#names(df_pib_sp_limpo)
+#names(df_dados_de_criminalidade_limpo)
 
-
+#interando as tabelas
 df_pib_per_capita <- df_dados_de_criminalidade_limpo %>%
   left_join(df_pib_sp_limpo, by = c("cod_municipio" = "municipio_codigo")) %>%
   mutate(
@@ -103,16 +108,19 @@ df_pib_per_capita <- df_dados_de_criminalidade_limpo %>%
     populacao_2022 = as.numeric(populacao_2022)
   )
 
+#DEBUG
 #head(df_pib_per_capita)
 
+#Criando a tabela final calculando o pib per capita e selecionando as colunas de interesse
 df_pib_per_capita <- df_pib_per_capita %>%
   mutate(
-    pib_per_capita = (valor * 1000) / populacao_2022) %>%
-  select(municipio.x, pib_total_mil = valor, populacao_2022,pib_per_capita)
+    pib_per_capita = (valor * 1000) / populacao_2022) %>%#calculo do considerando o valor em mil reais
+  select(municipio.x, pib_total_mil = valor, populacao_2022,pib_per_capita) %>%
+  mutate(pib_per_capita = round(pib_per_capita, 2))
 
 head(df_pib_per_capita )
 
-#*Obs: NECESSITA FORMATAR/CONFERIR DADOS FINAIS
+#Gravando arquivo na pasta
 write_csv(df_pib_per_capita, "Pib_per_capita.csv")
 
   
@@ -137,7 +145,15 @@ write_csv(df_pib_per_capita, "Pib_per_capita.csv")
 #=========================================================================
 # 2.3 Construção do Modelo
 #=========================================================================
+#a)Insira todas as variáveis em um novo data frame   
 
+#b)
+
+#c)
+
+#d)
+
+#e)
 #=========================================================================
 # 2.4 Análise do Modelo
 #=========================================================================
