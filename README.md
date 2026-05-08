@@ -16,7 +16,7 @@ Execute o comando abaixo console do RStudio para instalar todas as dependências
 4. Uma vez finalizado, seu ambiente estará idêntico ao de produção.
 
 
-================================================================================================
+===========================================================================================
 
 # Especialização em Ciência de Dados e Big Data 
 
