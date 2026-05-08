@@ -76,7 +76,8 @@ head(df_dados_de_criminalidade)
 
 write_csv(df_dados_de_criminalidade, "dados_de_criminalidade.csv") 
 list.files() #Lista arquivos na pasta para conferência
-  
+ 
+#--------------------------- 
 #b)Ulilizar o pacote SIDRAR - Dados do Produto Interno Bruto de 2023 para cada município
 #VARIÁVEL: df_pib_per_capita
 #---------------------------
@@ -93,6 +94,7 @@ head(pib_sp)
 
 head(df_dados_de_criminalidade)
 
+#resolvendo nome de colunas
 df_pib_sp_limpo <- pib_sp %>% clean_names()
 df_dados_de_criminalidade_limpo = df_dados_de_criminalidade %>% clean_names()
 
@@ -114,7 +116,7 @@ df_pib_per_capita <- df_dados_de_criminalidade_limpo %>%
 #Criando a tabela final calculando o pib per capita e selecionando as colunas de interesse
 df_pib_per_capita <- df_pib_per_capita %>%
   mutate(
-    pib_per_capita = (valor * 1000) / populacao_2022) %>%#calculo do considerando o valor em mil reais
+    pib_per_capita = (valor * 1000) / populacao_2022) %>%#calculo considerando o valor em mil reais (valor * 1000)
   select(municipio.x, pib_total_mil = valor, populacao_2022,pib_per_capita) %>%
   mutate(pib_per_capita = round(pib_per_capita, 2))
 
@@ -124,7 +126,7 @@ head(df_pib_per_capita )
 write_csv(df_pib_per_capita, "Pib_per_capita.csv")
 
   
-  
+#---------------------------  
 #c) Quantidade de aglomerados urbanos por municipio
 #VARIÁVEL: aglomerados_por_municipio
 #---------------------------
