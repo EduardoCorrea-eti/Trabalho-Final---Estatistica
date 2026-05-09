@@ -138,6 +138,7 @@ class(url_aglomerados)
 
 #SANITIZAÇÃO DE NOMES DE COLUNAS
 df_aglomerados_limpo <- url_aglomerados %>% clean_names()
+
 #DEBUG
 head(df_aglomerados_limpo)
 
@@ -148,9 +149,9 @@ df_aglomerados <- df_aglomerados_limpo %>%
   #FILTRO DE DADOS(*-SP), 
   dplyr::filter(str_ends(municipio, " - SP")) 
 
-head(df_aglomerados)
-write_csv(df_aglomerados, "aglomerados.csv")
-list.files() #Lista arquivos na pasta para conferência
+#DEBUG
+# head(df_aglomerados)
+# list.files() 
 
 #CRIANDO DF_FINAL COM TODOS OS MUNICIPIOS E VALOR "0" ATRIBUIDO AO MUNICIPIO EM QUE NÃO HA AGLOMERADO
 df_aglomerados_por_municipio <- df_dados_de_criminalidade %>%
@@ -170,8 +171,23 @@ write_csv(df_aglomerados_por_municipio, "aglorerados_por_municipio.csv")
 
 
   #d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
-#VARIÁVEL: analfabetismo_por_municipio
+#VARIÁVEL: df_analfabetismo_por_municipio
 #---------------------------
+#RECEBE A URL
+url_analfabetismo <- get_sidra(api = "/t/9543/n6/all/v/all/p/all/c2/6794/c86/95251/c287/100362/d/v2513%202")
+#TRATAMENTO E SELEÇÃO DA TABELA
+df_analfabetismo_por_municipio <-url_analfabetismo %>% 
+  clean_names() %>%
+  select(cod_municipio = "municipio_codigo", "municipio","valor", medida = "unidade_de_medida") %>%
+  dplyr::filter(str_ends(municipio, " - SP")) %>%
+  #CALCULO DO ANALFATETISMO POR MUNICIPIO
+  mutate(valor = (100 - valor), valor = round(valor, 2)) 
+
+#DEBUG
+#print(analfabetismo)
+
+#GRAVANDO CSV NA PASTA
+write.csv(df_analfabetismo_por_municipio, "analfabetismo_por_municipio.csv")
 
 #e)Percentual da população jovem (entre 15 e 29 anos)nos municípios
 #VARIÁVEL: populacao_jovem
