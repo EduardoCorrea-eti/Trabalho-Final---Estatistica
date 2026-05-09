@@ -153,8 +153,20 @@ write_csv(df_aglomerados, "aglomerados.csv")
 list.files() #Lista arquivos na pasta para conferência
 
 #CRIANDO DF_FINAL COM TODOS OS MUNICIPIOS E VALOR "0" ATRIBUIDO AO MUNICIPIO EM QUE NÃO HA AGLOMERADO
-df_aglomerados_por_municipio <-df_aglomerados %>%
-  left_join(df_dados_de_criminalidade)
+df_aglomerados_por_municipio <- df_dados_de_criminalidade %>%
+  left_join(df_aglomerados, by = c("cod_municipio" = "codigo"))%>%
+  select("cod_municipio",municipio = "municipio.x","uf",qnt_aglomerados = "valor") %>%
+  #ALTERA OS RESULTADOS NA -> 0
+  replace_na(list(qnt_aglomerados = 0))
+  #ALTERNATIVA: DEVOLVE O MESMO RESULTADO
+  # mutate(qnt_aglomerados = coalesce(as.numeric(qnt_aglomerados), 0))
+
+#DEBUG
+# head(df_aglomerados_por_municipio)
+# print(df_aglomerados_por_municipio, n=600)
+
+#GRAVA CSV NA PASTA
+write_csv(df_aglomerados_por_municipio, "aglorerados_por_municipio.csv")
 
 
   #d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
