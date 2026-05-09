@@ -1,4 +1,5 @@
 
+
 #=======================LIMPEZA DO ABLIENTE=====================================
 #limpa objetos do workspace e previne conflitos
 rm(list = ls())
@@ -82,7 +83,7 @@ list.files() #Lista arquivos na pasta para conferência
 #VARIÁVEL: df_pib_per_capita
 #---------------------------
 #recupera os dados dos municipios de SP no SIDRAR
-pib_tot_2023 <- get_sidra(api = "/t/5938//n6/in%20n3%2035/v/37/p/last%201/d/v37%200")
+pib_tot_2023 <- get_sidra(api = "/t/9883/n6/all/v/all/p/all")
 
 #seleção de colunas
 pib_sp <- pib_tot_2023 %>%
@@ -130,8 +131,62 @@ write_csv(df_pib_per_capita, "Pib_per_capita.csv")
 #c) Quantidade de aglomerados urbanos por municipio
 #VARIÁVEL: aglomerados_por_municipio
 #---------------------------
+#RECEBE O RETORNO DA API
+url_aglomerados <- get_sidra(api = "/t/9883/n6/all/v/all/p/all")
+#IDENTIFICA DO TIPO DA VARIAVEL
+class(url_aglomerados)
 
-#d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
+
+df_aglomerados_limpo <- url_aglomerados %>% clean_names()
+head(df_aglomerados_limpo)
+
+#FORMATAÇÃO E SELEÇÃO DO DF 
+df_aglomerados <- df_aglomerados_limpo %>%
+  #SELEÇÃO DAS COLUNAS DE INTERESSE ALTERANDO NOME DE COLUNA,
+  select(codigo ="municipio_codigo","municipio", "valor") %>%
+  #FILTRO DE DADOS(*-SP), 
+  dplyr::filter(str_ends(municipio, " - SP")) 
+
+
+
+head(df_aglomerados)
+
+
+
+
+
+
+
+
+
+
+
+
+#LIMPANDO NOMES DE COLUNAS
+dados_de_aglomerados_limpo <- url_csv_aglomerados %>% clean_names()
+#VERIFICANDO ESTRUTURADA TABELA E NOME DAS COLUNAS
+head(url_csv_aglomerados)
+#recebe a leitura do arquivo
+dados_de_aglomerados <- readr::read_delim(url_csv_aglomerados, 
+                                            delim = ",",
+                                            col_names = TRUE, 
+                                            locale = locale(encoding = "UTF-8", decimal_mark = ".")
+) %>%
+  #arredondamento de casas decimais
+  mutate(taxa_100mil = round(taxa_100mil, 2))
+
+
+aglomerados_limpo <- aglomerados %>% clean_names()
+
+
+# Seleção do Estado
+estado <- "SP" 
+
+aglomerados_limpo <- aglomerados_limpo %>%
+  dplyr::filter(unidade_da_federacao_e_municipio == estado) %>%
+
+aglomerados_limpo
+  #d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
 #VARIÁVEL: analfabetismo_por_municipio
 #---------------------------
 
