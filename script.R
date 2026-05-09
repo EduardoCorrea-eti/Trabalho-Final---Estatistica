@@ -149,6 +149,8 @@ df_aglomerados <- df_aglomerados_limpo %>%
   dplyr::filter(str_ends(municipio, " - SP")) 
 
 head(df_aglomerados)
+write_csv(df_aglomerados, "aglomerados.csv")
+list.files() #Lista arquivos na pasta para conferência
 
 #CRIANDO DF_FINAL COM TODOS OS MUNICIPIOS E VALOR "0" ATRIBUIDO AO MUNICIPIO EM QUE NÃO HA AGLOMERADO
 df_aglomerados_por_municipio <-df_aglomerados %>%
