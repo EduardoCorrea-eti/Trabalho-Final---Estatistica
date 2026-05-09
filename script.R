@@ -190,10 +190,36 @@ df_analfabetismo_por_municipio <-url_analfabetismo %>%
 write.csv(df_analfabetismo_por_municipio, "analfabetismo_por_municipio.csv")
 
 #e)Percentual da população jovem (entre 15 e 29 anos)nos municípios
-#VARIÁVEL: populacao_jovem
+#VARIÁVEL: df_populacao_jovem_por_municipio
 #---------------------------
+#RECEBENDO DADOS DA API
+populacao_jovem <- get_sidra(api = "/t/9514/n6/all/v/allxp/p/all/c2/6794/c287/93086,93087,93088/c286/113635")
 
+#TRATANDO TABELA
+df_populacao_15_29 <- populacao_jovem %>%
+  clean_names() %>%
+  select(cod_municipio = "municipio_codigo","municipio", "idade", "valor" ) %>%
+  dplyr::filter(str_ends(municipio, " - SP")) %>%
+  group_by(cod_municipio, municipio) %>%
+  summarise(pop_jovem = sum(valor, na.rm = TRUE), .groups = "drop")
+  
+#DEBUG
+# df_populacao_15_29
+names(df_populacao_15_29)
+names(df_dados_de_criminalidade)
+
+#UNINDO TABELAS/CALCULANDO VALORES PARA CRIAÇÃO DA COLUNA POLULAÇÃO JOVEM POR MUNICIPIO
+df_populacao_jovem_por_municipio <- df_populacao_15_29 %>%
+  left_join(df_dados_de_criminalidade, by =c("cod_municipio" = "cod_municipio")) %>%
+    mutate( pop_jovem_municipio = (pop_jovem * 100) / populacao_2022, medida = "%", pop_jovem_municipio = round(pop_jovem_municipio, 2)) %>%
+    select("cod_municipio", municipio = "municipio.y", "pop_jovem_municipio", "medida")
+  
+  
+df_populacao_jovem_por_municipio
+
+write_csv(df_populacao_jovem_por_municipio, "populacao_jovem_por_municipio.csv")
 #f)Familiasa beneficiadas pelo Bolsa Familia em dezembro de 2024
+
 #VARIÁVEL: bolsa_familia_2024
 #---------------------------
 
