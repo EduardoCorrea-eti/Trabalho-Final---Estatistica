@@ -136,8 +136,9 @@ url_aglomerados <- get_sidra(api = "/t/9883/n6/all/v/all/p/all")
 #IDENTIFICA DO TIPO DA VARIAVEL
 class(url_aglomerados)
 
-
+#SANITIZAÇÃO DE NOMES DE COLUNAS
 df_aglomerados_limpo <- url_aglomerados %>% clean_names()
+#DEBUG
 head(df_aglomerados_limpo)
 
 #FORMATAÇÃO E SELEÇÃO DO DF 
@@ -147,45 +148,13 @@ df_aglomerados <- df_aglomerados_limpo %>%
   #FILTRO DE DADOS(*-SP), 
   dplyr::filter(str_ends(municipio, " - SP")) 
 
-
-
 head(df_aglomerados)
 
+#CRIANDO DF_FINAL COM TODOS OS MUNICIPIOS E VALOR "0" ATRIBUIDO AO MUNICIPIO EM QUE NÃO HA AGLOMERADO
+df_aglomerados_por_municipio <-df_aglomerados %>%
+  left_join(df_dados_de_criminalidade)
 
 
-
-
-
-
-
-
-
-
-
-#LIMPANDO NOMES DE COLUNAS
-dados_de_aglomerados_limpo <- url_csv_aglomerados %>% clean_names()
-#VERIFICANDO ESTRUTURADA TABELA E NOME DAS COLUNAS
-head(url_csv_aglomerados)
-#recebe a leitura do arquivo
-dados_de_aglomerados <- readr::read_delim(url_csv_aglomerados, 
-                                            delim = ",",
-                                            col_names = TRUE, 
-                                            locale = locale(encoding = "UTF-8", decimal_mark = ".")
-) %>%
-  #arredondamento de casas decimais
-  mutate(taxa_100mil = round(taxa_100mil, 2))
-
-
-aglomerados_limpo <- aglomerados %>% clean_names()
-
-
-# Seleção do Estado
-estado <- "SP" 
-
-aglomerados_limpo <- aglomerados_limpo %>%
-  dplyr::filter(unidade_da_federacao_e_municipio == estado) %>%
-
-aglomerados_limpo
   #d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
 #VARIÁVEL: analfabetismo_por_municipio
 #---------------------------
