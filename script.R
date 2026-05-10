@@ -1,5 +1,3 @@
-
-
 #=======================LIMPEZA DO ABLIENTE=====================================
 #limpa objetos do workspace e previne conflitos
 rm(list = ls())
@@ -15,6 +13,9 @@ graphics.off()
 if(!require("sidrar")) install.packages("sidrar")
 if(!require("conflicted")) install.packages("conflicted")
 if(!require("readr")) install.packages("readr")
+if(!require("ipeadatar")) install.packages("ipeadatar")
+if(!require("tidyr")) install.packages("tidyr")
+
 
 #chamando bibliotecas
 library(readr)
@@ -23,6 +24,8 @@ library(sidrar)
 library(tidyverse)
 library(conflicted)
 library(janitor)
+library(ipeadatar)
+library(tidyr)
 
 #===================ESTABELECENDO AS PASTAS DE TRABALHO=========================
 # Exibe o diretório raiz do projeto, caso esteja usando projeto RStudio
@@ -83,43 +86,37 @@ list.files() #Lista arquivos na pasta para conferência
 #VARIÁVEL: df_pib_per_capita
 #---------------------------
 #recupera os dados dos municipios de SP no SIDRAR
-pib_tot_2023 <- get_sidra(api = "/t/9883/n6/all/v/all/p/all")
+pib_tot_2023 <- get_sidra(api = "/t/5938/n6/all/v/37/p/last%201/d/v37%200")
 
-#seleção de colunas
-pib_sp <- pib_tot_2023 %>%
-  select(Município,`Município (Código)`, Valor) %>%
-  dplyr::filter(str_ends(Município, " - SP")) %>%
-  mutate(Valor = as.numeric(Valor))
+pib_tot_2023
 
-head(pib_sp)
+pib_tot_2023 <- pib_tot_2023 %>% 
+  clean_names() %>%
+  select(cod_municipio = "municipio_codigo","municipio", "valor") %>%
+  dplyr::filter(str_ends(municipio," - SP"))
 
-head(df_dados_de_criminalidade)
+pib_tot_2023
 
-#resolvendo nome de colunas
-df_pib_sp_limpo <- pib_sp %>% clean_names()
-df_dados_de_criminalidade_limpo = df_dados_de_criminalidade %>% clean_names()
+df_dados_de_criminalidade_limpo <- df_dados_de_criminalidade %>% clean_names()
+names(df_dados_de_criminalidade_limpo)
+names(pib_tot_2023)
 
-#DEBUGANDO NOME DE COLUNAS APOS ALTERAÇÃO
-#names(df_pib_sp_limpo)
-#names(df_dados_de_criminalidade_limpo)
+pib_tot_2023
 
 #integrando as tabelas
-df_pib_per_capita <- df_dados_de_criminalidade_limpo %>%
-  left_join(df_pib_sp_limpo, by = c("cod_municipio" = "municipio_codigo")) %>%
-  mutate(
-    valor = as.numeric(valor),
-    populacao_2022 = as.numeric(populacao_2022)
-  )
+df_pib_per_capita <- pib_tot_2023 %>%
+  left_join(df_dados_de_criminalidade_limpo, by = c("cod_municipio" = "cod_municipio")) %>%
+  select(municipio = "municipio.y", pib_total_mil = "valor", "populacao_2022") %>%
+  mutate( pib_per_capita = (pib_total_mil * 1000) / populacao_2022, pib_per_capita = round(pib_per_capita, 2))#calculo considerando o valor em mil reais (valor * 1000)
+
 
 #DEBUG
-#head(df_pib_per_capita)
+head(df_pib_per_capita)
 
 #Criando a tabela final calculando o pib per capita e selecionando as colunas de interesse
 df_pib_per_capita <- df_pib_per_capita %>%
-  mutate(
-    pib_per_capita = (valor * 1000) / populacao_2022) %>%#calculo considerando o valor em mil reais (valor * 1000)
-  select(municipio.x, pib_total_mil = valor, populacao_2022,pib_per_capita) %>%
-  mutate(pib_per_capita = round(pib_per_capita, 2))
+  
+ 
 
 head(df_pib_per_capita )
 
