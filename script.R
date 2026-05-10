@@ -26,6 +26,7 @@ library(conflicted)
 library(janitor)
 library(ipeadatar)
 library(tidyr)
+library(ipeadatar)
 
 #===================ESTABELECENDO AS PASTAS DE TRABALHO=========================
 # Exibe o diretório raiz do projeto, caso esteja usando projeto RStudio
@@ -113,20 +114,13 @@ df_pib_per_capita <- pib_tot_2023 %>%
 #DEBUG
 head(df_pib_per_capita)
 
-#Criando a tabela final calculando o pib per capita e selecionando as colunas de interesse
-df_pib_per_capita <- df_pib_per_capita %>%
-  
- 
-
-head(df_pib_per_capita )
-
 #Gravando arquivo na pasta
 write_csv(df_pib_per_capita, "Pib_per_capita.csv")
 
   
 #---------------------------  
 #c) Quantidade de aglomerados urbanos por municipio
-#VARIÁVEL: aglomerados_por_municipio
+#VARIÁVEL: df_aglomerados_por_municipio
 #---------------------------
 #RECEBE O RETORNO DA API
 url_aglomerados <- get_sidra(api = "/t/9883/n6/all/v/all/p/all")
@@ -166,8 +160,8 @@ df_aglomerados_por_municipio <- df_dados_de_criminalidade %>%
 #GRAVA CSV NA PASTA
 write_csv(df_aglomerados_por_municipio, "aglorerados_por_municipio.csv")
 
-
-  #d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
+#---------------------------  
+#d) Pessoas alfabetizadas por municipio, criar coluna com taxa de analfabetismo municipal
 #VARIÁVEL: df_analfabetismo_por_municipio
 #---------------------------
 #RECEBE A URL
@@ -186,6 +180,7 @@ df_analfabetismo_por_municipio <-url_analfabetismo %>%
 #GRAVANDO CSV NA PASTA
 write.csv(df_analfabetismo_por_municipio, "analfabetismo_por_municipio.csv")
 
+#---------------------------  
 #e)Percentual da população jovem (entre 15 e 29 anos)nos municípios
 #VARIÁVEL: df_populacao_jovem_por_municipio
 #---------------------------
@@ -215,11 +210,73 @@ df_populacao_jovem_por_municipio <- df_populacao_15_29 %>%
 df_populacao_jovem_por_municipio
 
 write_csv(df_populacao_jovem_por_municipio, "populacao_jovem_por_municipio.csv")
-#f)Familiasa beneficiadas pelo Bolsa Familia em dezembro de 2024
 
+#---------------------------  
+#f)Familiasa beneficiadas pelo Bolsa Familia em dezembro de 2024
 #VARIÁVEL: bolsa_familia_2024
 #---------------------------
+#=========================================================================
+# f) Famílias beneficiárias do Bolsa Família (dez/2024)
+# VARIÁVEL: df_pbf_por_municipio
+#=========================================================================
+# 1. Baixa a série completa do Bolsa Família
+pbf_bruto <- ipeadata("FAM_PBF")
 
+# print(pbf_bruto, n = 90698)
+names(pbf_bruto)
+# 2. Filtra para a data desejada e apenas municípios de SP
+df_pbf_sp <- pbf_bruto %>%
+  # Garante que o código seja tratado como texto
+  mutate(code = as.character(code)) %>%
+  
+  # FILTRO DE SP: Mantém apenas códigos que começam com "35"
+  # E filtra a data de dezembro de 2024 (jan/2025 no sistema)
+  dplyr::filter(
+    str_starts(tcode, "35"),
+    date == as.Date("2025-01-01")
+  ) %>%
+  
+  # Limpeza final
+  rename(cod_municipio = code, total_familias_pbf = value, codigo_territorio = tcode) %>%
+  select(cod_municipio, date, total_familias_pbf, codigo_territorio) %>%
+  mutate(codigo_territorio = as.character(codigo_territorio))
+
+# names(df_pbf_sp)
+# print(df_pbf_sp)
+
+names(df_dados_de_criminalidade_limpo)
+names(df_pbf_sp)
+
+df_pbf_por_municipio <- df_dados_de_criminalidade_limpo %>%
+  left_join(df_pbf_sp, by = c("cod_municipio" = "codigo_territorio")) %>%
+  mutate(
+    pbf_100_mil = (total_familias_pbf / populacao_2022) * 100000,
+    pbf_100_mil = round(pbf_100_mil, 2)) %>%
+  select("cod_municipio", "municipio", "date", "total_familias_pbf", pbf_100_mil = "pbf_100_mil")
+
+df_pbf_por_municipio
+
+write_csv(df_pbf_por_municipio, "pbf_por_municipio.csv")
+
+#RESUMO DA COLETA DE DADOS
+print("Data Frame - Coleta de Datos - a)")
+head(df_dados_de_criminalidade)
+#------------------------------------------
+print("Data Frame - Coleta de Datos - b)")
+head(df_pib_per_capita)
+#------------------------------------------
+print("Data Frame - Coleta de Datos - c)")
+head(df_aglomerados_por_municipio)
+#------------------------------------------
+print("Data Frame - Coleta de Datos - d)")
+head(df_analfabetismo_por_municipio)
+#------------------------------------------
+print("Data Frame - Coleta de Datos - e)")
+head(df_populacao_jovem_por_municipio)
+#------------------------------------------
+print("Data Frame - Coleta de Datos - f)")
+head(df_pbf_por_municipio)
+#------------------------------------------
 
 #=========================================================================
 # 2.3 Construção do Modelo
