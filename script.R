@@ -1,4 +1,4 @@
-#=======================LIMPEZA DO ABLIENTE=====================================
+#=======================LIMPEZA DO AMBIENTE=====================================
 #limpa objetos do workspace e previne conflitos
 rm(list = ls())
 
@@ -89,7 +89,8 @@ list.files() #Lista arquivos na pasta para conferência
 #recupera os dados dos municipios de SP no SIDRAR
 pib_tot_2023 <- get_sidra(api = "/t/5938/n6/all/v/37/p/last%201/d/v37%200")
 
-pib_tot_2023
+#DEBUG
+#pib_tot_2023
 
 pib_tot_2023 <- pib_tot_2023 %>% 
   clean_names() %>%
@@ -213,18 +214,15 @@ write_csv(df_populacao_jovem_por_municipio, "populacao_jovem_por_municipio.csv")
 
 #---------------------------  
 #f)Familiasa beneficiadas pelo Bolsa Familia em dezembro de 2024
-#VARIÁVEL: bolsa_familia_2024
-#---------------------------
-#=========================================================================
-# f) Famílias beneficiárias do Bolsa Família (dez/2024)
 # VARIÁVEL: df_pbf_por_municipio
-#=========================================================================
-# 1. Baixa a série completa do Bolsa Família
+#---------------------------
+
+#ARQUIVO COMPLETO 
 pbf_bruto <- ipeadata("FAM_PBF")
 
 # print(pbf_bruto, n = 90698)
 names(pbf_bruto)
-# 2. Filtra para a data desejada e apenas municípios de SP
+#FILTRO DE DATA E MUNICIPIO
 df_pbf_sp <- pbf_bruto %>%
   # Garante que o código seja tratado como texto
   mutate(code = as.character(code)) %>%
@@ -244,8 +242,8 @@ df_pbf_sp <- pbf_bruto %>%
 # names(df_pbf_sp)
 # print(df_pbf_sp)
 
-names(df_dados_de_criminalidade_limpo)
-names(df_pbf_sp)
+# names(df_dados_de_criminalidade_limpo)
+# names(df_pbf_sp)
 
 df_pbf_por_municipio <- df_dados_de_criminalidade_limpo %>%
   left_join(df_pbf_sp, by = c("cod_municipio" = "codigo_territorio")) %>%
